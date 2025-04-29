@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import Navbar from "../components/navbar/index";
 import ContentSection from "../components/common/ContentSection";
 import Cards from "../components/common/card";
@@ -15,6 +16,11 @@ import { AvatarGroup } from "../components/common/AvatarGroup";
 import CountingNumber from "../components/common/CountingNumber";
 
 const Home = () => {
+  const sectionRef = useRef(null); // 1. Create a reference
+  const handleScroll = () => {
+    sectionRef.current?.scrollIntoView({ behavior: "smooth" }); // 2. Scroll into view
+  };
+
   const sections = [
     {
       leftContent:
@@ -56,7 +62,7 @@ const Home = () => {
         "we offer the highest quality educational resources to make learning accessible",
       biggerText: "EdTech",
       tags: [
-        { text: "Get started" },
+        { text: "Get started", onClick: handleScroll },
         {
           icon: true,
           bgColor: "transparent",
@@ -159,14 +165,18 @@ const Home = () => {
                   >
                     {item.text}
                   </span>
-                  <p className="flex text-[13px] sm:text-[18px] text-center">{item.description}</p>
+                  <p className="flex text-[13px] sm:text-[18px] text-center">
+                    {item.description}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </div>
         <div className="w-full md:w-1/2">
-          <p className={`  ${responsiveTextBodyLarge} text-center sm:text-left `}>
+          <p
+            className={`  ${responsiveTextBodyLarge} text-center sm:text-left `}
+          >
             At skillify, we offer comprehensive English language courses
             tailored to your personal and professional growth. Whether you're a
             beginner or seeking advanced fluency. our dynamic lessons will help
@@ -189,7 +199,7 @@ const Home = () => {
             </h2>
           </div>
           <div className="achieve_items_wrapper">
-            {achieveData.map((item, index) => (
+            {achieveData?.map((item, index) => (
               <div className="achieve_item" key={index}>
                 <div className="icon_wrapper">
                   <img src={item.icon} alt="" />
@@ -208,7 +218,7 @@ const Home = () => {
       <CourseSection2 />
 
       <div className="divider"></div>
-      <div className="CourseDisplay">
+      <div className="CourseDisplay" ref={sectionRef}>
         <CoursesDisplay />
       </div>
     </div>

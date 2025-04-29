@@ -15,10 +15,12 @@ import {
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-import { addDocument } from "../firebase/cloudFirestore";
+import {
+  addDocument,
+  readOrCreateDocument,
+  updateDocument,
+} from "../firebase/cloudFirestore";
 import { handleError, handleSuccess } from "../../utils/tostify";
-import { useDispatch } from "react-redux";
-import { setUserData } from "../../features/user/pages/userProfileSlice";
 
 const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
@@ -29,13 +31,12 @@ const db = getFirestore(firebaseApp);
 export const FirebaseProvider = ({ children }) => {
   const [loggedIn, setLoggedInUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setLoggedInUser(user || null);
       setLoading(false);
-      dispatch(setUserData(user.providerData[0]));
+     
     });
 
     return () => unsubscribe();
@@ -77,6 +78,7 @@ export const FirebaseProvider = ({ children }) => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
+
     } catch (error) {
       console.error("Logout error:", error.message);
     }
@@ -95,6 +97,32 @@ export const FirebaseProvider = ({ children }) => {
     }
   };
 
+  const readUserFromFirestore = async (
+    collectionname,
+    fieldname,
+    fieldvalue
+  ) => {
+    try {
+      const data = await readOrCreateDocument(
+        db,
+        collectionname,
+        fieldname,
+        fieldvalue
+      );
+      return data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const UpdateUser = async (collectionName, docid, updatedData) => {
+    try {
+      const data = await updateDocument(db, collectionName, docid, updatedData);
+      console.log("updated Data", data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <firebaseContext.Provider
       value={{
@@ -106,6 +134,8 @@ export const FirebaseProvider = ({ children }) => {
         UserSignInwithEmailAndPassword,
         loading,
         addUserToFirestore,
+        readUserFromFirestore,
+        UpdateUser
       }}
     >
       {children}

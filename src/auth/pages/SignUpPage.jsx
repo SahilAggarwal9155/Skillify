@@ -1,6 +1,6 @@
 // import AuthForm from "./AuthForm";
 import Analytics from "../../assets/images/svg/13246824_5191077.svg";
-import SignUp from "../../auth/pages/AuthFirebase";
+import SignUp from "./AuthFirebase";
 
 const SignupPage = () => {
   return (

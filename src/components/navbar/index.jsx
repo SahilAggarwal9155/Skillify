@@ -58,7 +58,7 @@ const Navbar = () => {
           },
         ]}
         triggerContent={<AvatarWithText useremail={user?.email || "Guest"} />}
-        className="cursor-pointer text-sm font-semibold text-white border border-white  rounded-full px-2 py-1 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-300"
+        className={`cursor-pointer invert-0 brightness-20   text-sm font-semibold text-white border border-white  rounded-full px-2 py-1  hover:text-gray-900 transition-colors duration-300`}
       />
     ) : (
       <DesktopLogin />
@@ -66,9 +66,11 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-[var(--color-lavender)]">
+    <header className="">
       <nav className="mx-auto  flex max-w-7xl items-center justify-between p-2 lg:px-8">
-        <Logo />
+        <Link to="/" className="flex items-center gap-2">
+          <Logo />
+        </Link>
 
         <DesktopMenu boxRef={boxRef} />
         <div className="flex gap-3">
@@ -123,7 +125,7 @@ const MobileMenuButton = ({ isOpen, toggleMenu }) => (
     <button
       onClick={toggleMenu}
       type="button"
-      className="relative z-20 cursor-pointer -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white transition-transform duration-300"
+      className="relative z-20 cursor-pointer -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 invert-0 brightness-20 transition-transform duration-300"
     >
       <span className="sr-only">Open main menu</span>
       <svg
@@ -172,7 +174,7 @@ const DesktopLogin = () => (
 
 const MobileDrawer = ({ isOpen, closeMenu, show }) => (
   <div
-    className={`fixed inset-y-0 right-0 z-10 w-full max-w-sm bg-white shadow-xl transition-transform duration-300 ease-in-out transform ${
+    className={`fixed inset-y-0 right-0 z-10 w-full max-w-sm bg-black shadow-xl transition-transform duration-300 ease-in-out transform ${
       isOpen ? "translate-x-0" : "translate-x-full"
     }`}
   >
@@ -181,7 +183,7 @@ const MobileDrawer = ({ isOpen, closeMenu, show }) => (
         <button
           onClick={closeMenu}
           type="button"
-          className="-m-2.5 cursor-pointer rounded-md text-gray-700 transition-transform duration-300 hover:rotate-90"
+          className="-m-2.5 cursor-pointer rounded-md text-white transition-transform duration-300 hover:rotate-90"
         >
           <span className="sr-only">Close menu</span>
           <svg
@@ -205,7 +207,7 @@ const MobileDrawer = ({ isOpen, closeMenu, show }) => (
           <a
             key={item.link}
             href={item.link}
-            className="text-sm flex font-semibold nav-hover text-gray-900"
+            className="text-sm flex font-semibold nav-hover text-white"
           >
             {item.text}
           </a>

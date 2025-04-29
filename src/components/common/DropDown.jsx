@@ -1,7 +1,12 @@
 import { Dropdown, Space } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
-const DropDown = ({ items, triggerContent = "Dropdown", onSelect, ...props }) => (
+const DropDown = ({
+  items,
+  triggerContent = "Dropdown",
+  onSelect,
+  ...props
+}) => (
   <Dropdown
     className={props.className}
     menu={{

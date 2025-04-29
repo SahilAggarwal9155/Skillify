@@ -23,11 +23,14 @@ export const AvatarGroup = () => (
 );
 
 export const AvatarWithText = ({ useremail }) => {
-  const name = useremail;
-  const firstLetter = name.charAt(0).toUpperCase();
+  const firstLetter = useremail.charAt(0).toUpperCase();
   return (
     <>
-      <Avatar  style={{ backgroundColor: "#fde3cf", color: "#f56a00" }}>
+      <Avatar
+        style={{
+          filter: "invert(100%)",
+        }}
+      >
         {firstLetter}
       </Avatar>
     </>

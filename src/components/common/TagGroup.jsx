@@ -12,18 +12,22 @@ const TagGroup = ({ tags, position }) => {
           key={index}
           className={`flex ${tag.bgColor || "bg-white"} ${
             tag.textColor || "text-black"
-          }   transition cursor-pointer rounded-full p-1 items-center`}
+          } transition cursor-pointer rounded-full p-1 items-center`}
+          onClick={() => {
+            if (tag.onClick) {
+              console.log("Tag clicked");
+              tag.onClick();
+            }
+          }}
         >
           {tag.icon && (
-            <>
-              <p
-                className={`${
-                  tag.iconColor || "bg-black primary-text"
-                } center-circle hover:${tag.rotate} transition p-2`}
-              >
-                {tag.item}
-              </p>
-            </>
+            <p
+              className={`${
+                tag.iconColor || "bg-black primary-text"
+              } center-circle hover:${tag.rotate} transition p-2`}
+            >
+              {tag.item}
+            </p>
           )}
           {tag.text && <p className="p-1 px-2">{tag.text}</p>}
         </div>

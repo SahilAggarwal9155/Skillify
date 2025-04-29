@@ -29,13 +29,17 @@ export default function CourseSection2() {
               <p>Professor And Dean | IIIT Bangalore</p>
             </div>
           </div>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTdMfGt8m2fOLQt3OZb5AgoKzHbWwjTCditg&s" alt="IIT" className=" h-[2rem] w-[2rem]" />
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTdMfGt8m2fOLQt3OZb5AgoKzHbWwjTCditg&s"
+            alt="IIT"
+            className=" h-[2rem] w-[2rem]"
+          />
         </div>
         <div className="flex gap-2 justify-center items-center">
           <Button className=" w-full bg-transparent !text-black border-1 text-[12px]">
             View Masterclass
           </Button>
-          <Button className="w-full text-[12px]">Register Now</Button>
+          <Button className="w-full !bg-black text-[12px]">Register Now</Button>
         </div>
       </div>
     );
