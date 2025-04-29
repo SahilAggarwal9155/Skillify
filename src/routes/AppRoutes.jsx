@@ -25,13 +25,13 @@ function AppRoutes() {
 
         <Route element={<ProtectdRoute />}>
           <Route path="/Profile" element={<UserProfileDetail />} />
+          <Route path="/courses" element={<Courses/>} />
         </Route>
         <Route element={<AdminRoute />}>
           <Route path="/addCourse" element={<AddCourseDetailForm />} />
 
-          <Route path="/addTeacher" element={<AddTeachers />} />
-          <Route path="/courses" element={<Courses/>} />
 
+          {/* <Route path="/addTeacher" element={<AddTeachers />} /> */}
           <Route
             path="/admin-dashboard"
             element={
